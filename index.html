@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B315B">
+  <meta name="description" content="FinniApp reúne tus gastos, ingresos, cuentas, ahorros y deudas en un solo lugar, con privacidad y control desde tu dispositivo.">
+  <title>FinniApp · Tus finanzas, más claras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/finniapp-icon.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="FinniApp, volver al inicio">
+      <img src="assets/finniapp-icon.png" alt="" width="44" height="44">
+      <span>Finni<span>App</span></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#funciones">Funciones</a>
+      <a href="#privacidad">Privacidad</a>
+      <a href="#preguntas">Preguntas</a>
+    </nav>
+    <a class="header-action" href="mailto:victorvargassandoval93@gmail.com">Soporte</a>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> Finanzas personales, sin complicaciones</p>
+        <h1>Tu dinero,<br><em>más claro.</em></h1>
+        <p class="hero-lead">Organiza gastos, ingresos, cuentas, ahorros y deudas desde una sola app. Tus datos permanecen bajo tu control.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#disponibilidad">Conocer disponibilidad</a>
+          <a class="button button-quiet" href="#funciones">Ver funciones</a>
+        </div>
+        <div class="trust-row" aria-label="Características destacadas">
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.7 3.2 8 7.5 9.8 4.3-1.8 7.5-5.1 7.5-9.8V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg> Sin publicidad</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Base local cifrada</span>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Vista conceptual del resumen financiero de FinniApp">
+        <div class="halo"></div>
+        <div class="phone">
+          <div class="phone-top"><span>FinniApp</span><span class="avatar">V</span></div>
+          <p class="period">Resumen de octubre</p>
+          <div class="balance-card">
+            <span>Saldo disponible</span>
+            <strong>$1.284.500</strong>
+            <div class="balance-meta"><span>Ingresos</span><b>+$2.100.000</b></div>
+            <div class="balance-meta"><span>Gastos</span><b>−$815.500</b></div>
+          </div>
+          <div class="chart-card">
+            <div><strong>Evolución</strong><span>Últimos 6 meses</span></div>
+            <svg viewBox="0 0 280 100" role="img" aria-label="Gráfico con tendencia positiva">
+              <defs><linearGradient id="area" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#20C9B5" stop-opacity=".32"/><stop offset="1" stop-color="#20C9B5" stop-opacity="0"/></linearGradient></defs>
+              <path class="chart-area" d="M4 84 C42 77 48 61 84 65 S137 50 166 55 S216 33 276 20 V98 H4Z"/>
+              <path class="chart-line" d="M4 84 C42 77 48 61 84 65 S137 50 166 55 S216 33 276 20"/>
+              <circle cx="276" cy="20" r="5"/>
+            </svg>
+          </div>
+          <div class="quick-row">
+            <span><i class="income">↓</i>Ingreso</span>
+            <button aria-label="Agregar movimiento">+</button>
+            <span><i class="expense">↑</i>Gasto</span>
+          </div>
+        </div>
+        <div class="floating-card floating-goal"><span>Meta terreno</span><strong>31%</strong><i><b></b></i></div>
+        <div class="floating-card floating-safe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.7 3.2 8 7.5 9.8 4.3-1.8 7.5-5.1 7.5-9.8V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg><span>Datos protegidos</span></div>
+      </div>
+    </section>
+
+    <section class="feature-section" id="funciones">
+      <div class="section-heading">
+        <p class="eyebrow"><span></span> Todo en orden</p>
+        <h2>Una vista completa de tus finanzas</h2>
+        <p>Registra lo importante y entiende cómo se mueve tu dinero sin depender de conexiones bancarias.</p>
+      </div>
+      <div class="feature-grid">
+        <article class="feature featured">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3"/></svg></div>
+          <h3>Ingresos y gastos</h3>
+          <p>Registra movimientos, categorías y recurrencias para tener una historia financiera clara.</p>
+          <div class="mini-chart"><i style="height:42%"></i><i style="height:66%"></i><i style="height:53%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:94%"></i></div>
+        </article>
+        <article class="feature">
+          <div class="feature-icon mint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v12H3zM16 13h3"/><path d="M6 7V5h12v2"/></svg></div>
+          <h3>Cuentas y tarjetas</h3>
+          <p>Controla saldos, cupos, cuotas y períodos de facturación desde un mismo lugar.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon blue"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/><path d="m4 7 5-4 4 3 7-5"/></svg></div>
+          <h3>Metas de ahorro</h3>
+          <p>Sigue tu progreso con objetivos, fechas y una evolución fácil de entender.</p>
+        </article>
+        <article class="feature">
+          <div class="feature-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h3"/></svg></div>
+          <h3>Deudas y reportes</h3>
+          <p>Haz seguimiento a pagos y cobros, y genera reportes PDF cuando los necesites.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="privacy-section" id="privacidad">
+      <div class="privacy-art" aria-hidden="true">
+        <div class="shield"><svg viewBox="0 0 24 24"><path d="M12 2 4 5.5v5.7c0 5.1 3.5 8.8 8 10.8 4.5-2 8-5.7 8-10.8V5.5L12 2Z"/><path d="m8.5 12 2.3 2.3 4.8-5"/></svg></div>
+        <span class="orbit orbit-one"></span><span class="orbit orbit-two"></span>
+      </div>
+      <div class="privacy-copy">
+        <p class="eyebrow light"><span></span> Diseñada con privacidad</p>
+        <h2>Tus finanzas son tuyas.</h2>
+        <p>FinniApp funciona principalmente en tu dispositivo. No incluye publicidad, no vende tus datos y no se conecta a instituciones financieras.</p>
+        <ul>
+          <li><span>✓</span> Base de datos local cifrada</li>
+          <li><span>✓</span> Respaldo opcional en tu Google Drive</li>
+          <li><span>✓</span> Bloqueo biométrico disponible</li>
+        </ul>
+        <a href="privacy.html">Leer la política de privacidad</a>
+      </div>
+    </section>
+
+    <section class="availability" id="disponibilidad">
+      <div>
+        <p class="eyebrow"><span></span> Próximamente</p>
+        <h2>FinniApp está en camino a Google Play</h2>
+        <p>La aplicación se encuentra en etapa de pruebas internas. Escríbenos si quieres conocer las novedades o necesitas ayuda.</p>
+      </div>
+      <a class="button button-primary" href="mailto:victorvargassandoval93@gmail.com?subject=Consulta%20sobre%20FinniApp">Contactar soporte</a>
+    </section>
+
+    <section class="faq-section" id="preguntas">
+      <div class="section-heading compact">
+        <p class="eyebrow"><span></span> Preguntas frecuentes</p>
+        <h2>Lo esencial, sin letra pequeña</h2>
+      </div>
+      <div class="faq-list">
+        <details><summary>¿FinniApp se conecta a mi banco?<span>+</span></summary><p>No. Los saldos, cupos y movimientos son informados por ti. Así mantienes el control sobre lo que registras.</p></details>
+        <details><summary>¿Necesito una cuenta para usarla?<span>+</span></summary><p>No. Puedes usar las funciones principales sin crear una cuenta. Google Drive es opcional y se utiliza únicamente para respaldos.</p></details>
+        <details><summary>¿Dónde se guardan mis datos?<span>+</span></summary><p>Principalmente en una base de datos cifrada dentro de tu dispositivo. Si activas respaldos, se guardan en el espacio privado de FinniApp en tu Google Drive.</p></details>
+        <details><summary>¿FinniApp tiene publicidad?<span>+</span></summary><p>No. FinniApp no incluye publicidad ni vende tus datos personales.</p></details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand footer-brand" href="#inicio"><img src="assets/finniapp-icon.png" alt="" width="38" height="38"><span>Finni<span>App</span></span></a>
+    <p>Finanzas personales con claridad y control.</p>
+    <div><a href="privacy.html">Privacidad</a><a href="mailto:victorvargassandoval93@gmail.com">Soporte</a></div>
+    <small>© 2026 FinniApp. Todos los derechos reservados.</small>
+  </footer>
+</body>
+</html>
