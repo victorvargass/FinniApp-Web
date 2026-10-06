@@ -137,6 +137,14 @@ h1 em { color: var(--turquoise-dark); font-style: normal; }
 .floating-goal b { display: block; width: 31%; height: 100%; border-radius: inherit; background: var(--turquoise); }
 .floating-safe { right: -25px; top: 105px; padding: 11px 14px; display: flex; align-items: center; gap: 8px; color: var(--navy); font-size: .72rem; font-weight: 700; }
 
+.video-section { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 116px 0 0; }
+.video-section .section-heading { margin-bottom: 42px; }
+.video-frame { position: relative; padding: 12px; border: 1px solid var(--border); border-radius: 34px; background: rgba(255,255,255,.78); box-shadow: var(--shadow); overflow: hidden; }
+.video-frame::before { content: ""; position: absolute; inset: -25% 25% auto; height: 50%; border-radius: 50%; background: rgba(32,201,181,.15); filter: blur(45px); pointer-events: none; }
+.video-frame video { position: relative; width: 100%; aspect-ratio: 16 / 9; display: block; border-radius: 24px; background: #edf5f5; object-fit: cover; }
+.video-note { margin: 16px 0 0; color: var(--blue-gray); text-align: center; font-size: .84rem; }
+.video-note span { margin-right: 6px; color: var(--turquoise-dark); font-size: .65rem; }
+
 .feature-section, .capabilities-section, .faq-section { width: min(1120px, calc(100% - 40px)); margin: 0 auto; padding: 116px 0; }
 .section-heading { max-width: 630px; margin: 0 auto 50px; text-align: center; }
 .section-heading h2, .privacy-copy h2, .availability h2 { margin: 0; font-size: clamp(2.25rem, 4.8vw, 3.65rem); line-height: 1.12; letter-spacing: -.055em; }
@@ -270,6 +278,10 @@ footer small { grid-column: 1 / -1; text-align: center; color: rgba(255,255,255,
   .floating-goal { left: 0; }
   .floating-safe { right: 0; }
   .feature-section, .capabilities-section, .faq-section { padding: 82px 0; }
+  .video-section { width: calc(100% - 20px); padding-top: 82px; }
+  .video-section .section-heading { padding-inline: 10px; }
+  .video-frame { padding: 5px; border-radius: 20px; }
+  .video-frame video { border-radius: 15px; }
   .feature-grid { grid-template-columns: 1fr; }
   .feature.featured { min-height: 340px; }
   .privacy-section { padding: 60px 24px; }
