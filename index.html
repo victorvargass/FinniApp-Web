@@ -25,6 +25,18 @@
       <a href="#preguntas">Preguntas</a>
     </nav>
     <a class="header-action" href="mailto:victorvargassandoval93@gmail.com">Soporte</a>
+    <details class="mobile-menu">
+      <summary aria-label="Abrir menú de navegación">
+        <span></span><span></span><span></span>
+      </summary>
+      <div class="mobile-menu-panel">
+        <a href="#funciones">Funciones</a>
+        <a href="#automatizacion">Automatización</a>
+        <a href="#privacidad">Privacidad</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="mailto:victorvargassandoval93@gmail.com">Soporte</a>
+      </div>
+    </details>
   </header>
 
   <main>
@@ -213,5 +225,10 @@
     <div><a href="privacy.html">Privacidad</a><a href="mailto:victorvargassandoval93@gmail.com">Soporte</a></div>
     <small>© 2026 FinniApp. Todos los derechos reservados.</small>
   </footer>
+  <script>
+    document.querySelectorAll('.mobile-menu a').forEach((link) => {
+      link.addEventListener('click', () => link.closest('details').removeAttribute('open'));
+    });
+  </script>
 </body>
 </html>

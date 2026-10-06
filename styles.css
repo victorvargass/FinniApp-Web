@@ -41,6 +41,38 @@ nav a, .header-action { text-decoration: none; font-weight: 600; font-size: .94r
 nav a { color: var(--blue-gray); }
 nav a:hover { color: var(--navy); }
 .header-action { border: 1px solid var(--border); border-radius: 999px; padding: 9px 18px; background: rgba(255,255,255,.6); }
+.mobile-menu { display: none; position: relative; border: 0; }
+.mobile-menu summary {
+  width: 44px;
+  min-height: 44px;
+  padding: 11px;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 5px 14px rgba(11,49,91,.08);
+}
+.mobile-menu summary span { width: 20px; height: 2px; display: block; border-radius: 2px; background: var(--navy); transition: transform .2s, opacity .2s; }
+.mobile-menu[open] summary span:first-child { transform: translateY(7px) rotate(45deg); }
+.mobile-menu[open] summary span:nth-child(2) { opacity: 0; }
+.mobile-menu[open] summary span:last-child { transform: translateY(-7px) rotate(-45deg); }
+.mobile-menu-panel {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 10px);
+  right: 0;
+  width: min(270px, calc(100vw - 28px));
+  padding: 10px;
+  display: grid;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: white;
+  box-shadow: 0 18px 45px rgba(11,49,91,.18);
+}
+.mobile-menu-panel a { padding: 11px 14px; border-radius: 10px; color: var(--navy); text-decoration: none; font-weight: 600; }
+.mobile-menu-panel a:hover, .mobile-menu-panel a:focus-visible { background: #edf8f6; }
 
 .hero {
   width: min(1180px, calc(100% - 40px));
@@ -208,6 +240,8 @@ footer small { grid-column: 1 / -1; text-align: center; color: rgba(255,255,255,
 
 @media (max-width: 900px) {
   nav { display: none; }
+  .header-action { display: none; }
+  .mobile-menu { display: block; margin-left: auto; }
   .hero { grid-template-columns: 1fr; padding-bottom: 40px; }
   .hero-copy { text-align: center; }
   .hero-lead { margin-inline: auto; }
