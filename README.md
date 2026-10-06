@@ -21,3 +21,12 @@ La URL esperada es:
 La política de privacidad queda disponible en:
 
 `https://victorvargass.github.io/FinniApp-Web/privacy.html`
+
+## Versiones de la aplicación
+
+`app-version.json` informa a FinniApp qué versión está publicada en Google Play.
+Actualízalo solamente después de que Google Play haya publicado la nueva versión:
+
+- `latestVersion`: versión más reciente disponible; muestra un aviso que se puede posponer.
+- `minimumVersion`: versión mínima compatible; muestra un aviso obligatorio para abrir Google Play.
+- `storeUrl`: ficha oficial de FinniApp en Google Play.
