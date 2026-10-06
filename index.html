@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0B315B">
-  <meta name="description" content="FinniApp reúne tus gastos, ingresos, cuentas, ahorros y deudas en un solo lugar, con privacidad y control desde tu dispositivo.">
+  <meta name="description" content="FinniApp organiza gastos, ingresos, cuentas, tarjetas, ahorros y deudas. Detecta movimientos desde notificaciones y funciona sin internet, con respaldo opcional en Google Drive.">
   <title>FinniApp · Tus finanzas, más claras</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +20,7 @@
     </a>
     <nav aria-label="Navegación principal">
       <a href="#funciones">Funciones</a>
+      <a href="#automatizacion">Automatización</a>
       <a href="#privacidad">Privacidad</a>
       <a href="#preguntas">Preguntas</a>
     </nav>
@@ -31,13 +32,13 @@
       <div class="hero-copy">
         <p class="eyebrow"><span></span> Finanzas personales, sin complicaciones</p>
         <h1>Tu dinero,<br><em>más claro.</em></h1>
-        <p class="hero-lead">Organiza gastos, ingresos, cuentas, ahorros y deudas desde una sola app. Tus datos permanecen bajo tu control.</p>
+        <p class="hero-lead">Organiza gastos, ingresos, cuentas, tarjetas, ahorros y deudas. FinniApp puede detectar movimientos desde notificaciones para que registres menos y mantengas el control.</p>
         <div class="hero-actions">
           <a class="button button-primary" href="#disponibilidad">Conocer disponibilidad</a>
           <a class="button button-quiet" href="#funciones">Ver funciones</a>
         </div>
         <div class="trust-row" aria-label="Características destacadas">
-          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.7 3.2 8 7.5 9.8 4.3-1.8 7.5-5.1 7.5-9.8V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg> Sin publicidad</span>
+          <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4.5 6v5.2c0 4.7 3.2 8 7.5 9.8 4.3-1.8 7.5-5.1 7.5-9.8V6L12 3Z"/><path d="m9 12 2 2 4-4"/></svg> Funciona sin internet</span>
           <span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Base local cifrada</span>
         </div>
       </div>
@@ -83,7 +84,7 @@
         <article class="feature featured">
           <div class="feature-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3"/></svg></div>
           <h3>Ingresos y gastos</h3>
-          <p>Registra movimientos, categorías y recurrencias para tener una historia financiera clara.</p>
+          <p>Registra movimientos, divide gastos, organiza categorías y consulta cada detalle desde un historial claro.</p>
           <div class="mini-chart"><i style="height:42%"></i><i style="height:66%"></i><i style="height:53%"></i><i style="height:82%"></i><i style="height:70%"></i><i style="height:94%"></i></div>
         </article>
         <article class="feature">
@@ -99,9 +100,69 @@
         <article class="feature">
           <div class="feature-icon amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18H6zM9 7h6M9 11h6M9 15h3"/></svg></div>
           <h3>Deudas y reportes</h3>
-          <p>Haz seguimiento a pagos y cobros, y genera reportes PDF cuando los necesites.</p>
+          <p>Haz seguimiento a pagos y cobros, y genera reportes detallados en PDF o CSV.</p>
         </article>
       </div>
+    </section>
+
+    <section class="automation-section" id="automatizacion">
+      <div class="automation-copy">
+        <p class="eyebrow"><span></span> Menos trabajo manual</p>
+        <h2>FinniApp te ayuda a recordar y registrar</h2>
+        <p>En Android puedes autorizar la lectura local de notificaciones financieras. Cuando una app compatible informa una compra, FinniApp identifica el comercio y el monto, evita sugerencias duplicadas y te permite revisar todo antes de guardarlo.</p>
+        <div class="automation-points">
+          <div><b>01</b><span><strong>Detecta</strong> posibles compras desde notificaciones de bancos y Google Wallet.</span></div>
+          <div><b>02</b><span><strong>Relaciona</strong> el movimiento con una recurrencia pendiente cuando encuentra una coincidencia.</span></div>
+          <div><b>03</b><span><strong>Tú decides</strong> si lo apruebas, modificas, dejas para después o descartas.</span></div>
+        </div>
+        <p class="platform-note">La detección desde notificaciones está disponible en Android, requiere autorización explícita y se puede desactivar cuando quieras.</p>
+      </div>
+      <div class="automation-demo" aria-label="Ejemplo conceptual de detección de un movimiento y una alerta recurrente">
+        <div class="demo-label">Detección local</div>
+        <article class="notification-card">
+          <div class="notification-icon">↗</div>
+          <div><span>Movimiento detectado</span><strong>Panadería La Vecina</strong><small>Compra informada por tu banco</small></div>
+          <b>−$1.300</b>
+        </article>
+        <div class="review-row"><span>✓ Monto identificado</span><span>Revisar antes de guardar →</span></div>
+        <article class="reminder-card">
+          <div class="reminder-top"><span>Próximo movimiento</span><b>Hoy</b></div>
+          <h3>Pago recurrente de Entel</h3>
+          <p>Recibe una alerta y aprueba u omite el movimiento desde FinniApp.</p>
+          <div><span>Omitir</span><strong>Aprobar</strong></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="capabilities-section" aria-labelledby="mas-funciones">
+      <div class="section-heading">
+        <p class="eyebrow"><span></span> Mucho más que un registro</p>
+        <h2 id="mas-funciones">Herramientas para cada parte de tu panorama</h2>
+      </div>
+      <div class="capability-grid">
+        <article><span>◷</span><h3>Alertas y recurrencias</h3><p>Programa ingresos, gastos y aportes de ahorro. Elige registro automático o confirmación y recibe avisos cuando corresponda.</p></article>
+        <article><span>⌁</span><h3>Presupuestos y proyección</h3><p>Define límites por categoría y revisa movimientos vencidos, próximos pagos y el flujo esperado hasta fin de mes.</p></article>
+        <article><span>⇄</span><h3>Transferencias y abonos</h3><p>Mueve dinero entre cuentas, registra pagos de tarjetas y concilia ciclos sin convertirlos en gastos duplicados.</p></article>
+        <article><span>◎</span><h3>Contactos y gastos compartidos</h3><p>Organiza cobros, préstamos y la parte que corresponde a cada persona sin perder el movimiento original.</p></article>
+        <article><span>▤</span><h3>Historial y reportes</h3><p>Consulta períodos cerrados, compara resultados y exporta información en PDF o CSV cuando la necesites.</p></article>
+        <article><span>✦</span><h3>Inicio personalizable</h3><p>Elige qué resúmenes aparecen, ordénalos y mantén visibles solo los indicadores que realmente utilizas.</p></article>
+      </div>
+    </section>
+
+    <section class="offline-section">
+      <div class="offline-badge" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 16.5A4.5 4.5 0 0 1 5.2 7.7 7 7 0 0 1 18.5 9 4 4 0 0 1 19 17H8"/><path d="m3 3 18 18"/></svg>
+      </div>
+      <div>
+        <p class="eyebrow"><span></span> Disponible estés donde estés</p>
+        <h2>Tu día a día no depende de internet</h2>
+        <p>Puedes registrar y consultar movimientos, cuentas, tarjetas, metas, deudas y reportes sin conexión. Internet solo es necesario cuando decides iniciar sesión para respaldar o restaurar con Google Drive, y para descargar actualizaciones.</p>
+      </div>
+      <ul>
+        <li><span>✓</span><div><strong>Sin cuenta obligatoria</strong><small>Comienza a usar FinniApp directamente.</small></div></li>
+        <li><span>✓</span><div><strong>Información en tu dispositivo</strong><small>La base financiera permanece cifrada localmente.</small></div></li>
+        <li><span>✓</span><div><strong>Google Drive opcional</strong><small>Conéctalo solo para respaldar y restaurar.</small></div></li>
+      </ul>
     </section>
 
     <section class="privacy-section" id="privacidad">
@@ -112,9 +173,10 @@
       <div class="privacy-copy">
         <p class="eyebrow light"><span></span> Diseñada con privacidad</p>
         <h2>Tus finanzas son tuyas.</h2>
-        <p>FinniApp funciona principalmente en tu dispositivo. No incluye publicidad, no vende tus datos y no se conecta a instituciones financieras.</p>
+        <p>FinniApp funciona principalmente en tu dispositivo. No vende tus datos ni comparte tu información financiera con instituciones financieras.</p>
         <ul>
           <li><span>✓</span> Base de datos local cifrada</li>
+          <li><span>✓</span> Detección de movimientos procesada localmente</li>
           <li><span>✓</span> Respaldo opcional en tu Google Drive</li>
           <li><span>✓</span> Bloqueo biométrico disponible</li>
         </ul>
@@ -124,9 +186,9 @@
 
     <section class="availability" id="disponibilidad">
       <div>
-        <p class="eyebrow"><span></span> Próximamente</p>
-        <h2>FinniApp está en camino a Google Play</h2>
-        <p>La aplicación se encuentra en etapa de pruebas internas. Escríbenos si quieres conocer las novedades o necesitas ayuda.</p>
+        <p class="eyebrow"><span></span> Prueba cerrada</p>
+        <h2>FinniApp se prepara para su lanzamiento</h2>
+        <p>La aplicación se encuentra en prueba cerrada en Google Play. Escríbenos si quieres participar, compartir comentarios o necesitas ayuda.</p>
       </div>
       <a class="button button-primary" href="mailto:victorvargassandoval93@gmail.com?subject=Consulta%20sobre%20FinniApp">Contactar soporte</a>
     </section>
@@ -137,10 +199,10 @@
         <h2>Lo esencial, sin letra pequeña</h2>
       </div>
       <div class="faq-list">
-        <details><summary>¿FinniApp se conecta a mi banco?<span>+</span></summary><p>No. Los saldos, cupos y movimientos son informados por ti. Así mantienes el control sobre lo que registras.</p></details>
-        <details><summary>¿Necesito una cuenta para usarla?<span>+</span></summary><p>No. Puedes usar las funciones principales sin crear una cuenta. Google Drive es opcional y se utiliza únicamente para respaldos.</p></details>
+        <details><summary>¿FinniApp se conecta a mi banco?<span>+</span></summary><p>No. FinniApp no solicita claves bancarias ni se conecta a tus cuentas. En Android puedes autorizarla para detectar localmente compras informadas por notificaciones de aplicaciones compatibles; siempre puedes revisar la sugerencia antes de guardarla.</p></details>
+        <details><summary>¿Necesito internet o una cuenta?<span>+</span></summary><p>No para el uso cotidiano. Puedes registrar y consultar tus finanzas sin conexión ni cuenta. Internet e inicio de sesión se usan cuando eliges respaldar o restaurar con Google Drive; también necesitarás conexión para descargar actualizaciones.</p></details>
+        <details><summary>¿Qué alertas puede mostrar?<span>+</span></summary><p>FinniApp puede recordarte recurrencias pendientes, vencimientos de tarjetas y movimientos próximos. Los avisos se programan en tu dispositivo y puedes activarlos o desactivarlos.</p></details>
         <details><summary>¿Dónde se guardan mis datos?<span>+</span></summary><p>Principalmente en una base de datos cifrada dentro de tu dispositivo. Si activas respaldos, se guardan en el espacio privado de FinniApp en tu Google Drive.</p></details>
-        <details><summary>¿FinniApp tiene publicidad?<span>+</span></summary><p>No. FinniApp no incluye publicidad ni vende tus datos personales.</p></details>
       </div>
     </section>
   </main>
