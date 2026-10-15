@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse
 import math
 import subprocess
+import wave
+from array import array
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
@@ -177,6 +179,89 @@ def scene_phone(
     return canvas
 
 
+def scene_projection(local_t: float, duration: float, icon: Image.Image, regular: Path, medium: Path, bold: Path) -> Image.Image:
+    canvas = background()
+    painter = ImageDraw.Draw(canvas)
+    enter = ease_out(local_t / 0.65)
+    leave = 1 - ease_in_out((local_t - duration + 0.48) / 0.48)
+    visibility = max(0.0, min(1.0, min(enter, leave)))
+    alpha = int(255 * visibility)
+    draw_brand(canvas, icon, regular, bold, alpha)
+    draw_copy(
+        canvas,
+        ["Anticipa el cierre", "antes de que llegue"],
+        ["Disponible actual, movimiento pendiente", "y saldo esperado en una sola vista."],
+        "PROYECCIÓN A SEIS MESES",
+        regular,
+        medium,
+        bold,
+        visibility,
+        accent_last=True,
+    )
+    card_x = 755 + int((1 - enter) * 90)
+    card_y = 110
+    painter.rounded_rectangle((card_x, card_y, card_x + 455, card_y + 505), radius=30, fill=(255, 255, 255, alpha), outline=(216, 225, 232, alpha), width=2)
+    painter.text((card_x + 28, card_y + 25), "Proyección mensual", font=load_font(bold, 27), fill=(11, 49, 91, alpha))
+    painter.text((card_x + 28, card_y + 64), "Entradas y salidas proyectadas", font=load_font(regular, 17), fill=(96, 117, 138, alpha))
+    months = ["Oct", "Nov", "Dic", "Ene", "Feb", "Mar"]
+    incoming = [118, 104, 96, 101, 92, 98]
+    outgoing = [88, 72, 61, 45, 38, 31]
+    baseline = card_y + 258
+    for index, month in enumerate(months):
+        grow = ease_out((local_t - 0.28 - index * 0.07) / 0.55) * leave
+        x = card_x + 37 + index * 66
+        painter.rounded_rectangle((x, baseline - int(incoming[index] * grow), x + 11, baseline), radius=6, fill=(31, 174, 122, int(alpha * grow)))
+        painter.rounded_rectangle((x + 15, baseline - int(outgoing[index] * grow), x + 26, baseline), radius=6, fill=(224, 85, 93, int(alpha * grow)))
+        painter.text((x - 1, baseline + 14), month, font=load_font(medium, 14), fill=(11, 49, 91, alpha) if index == 0 else (96, 117, 138, alpha))
+    painter.rounded_rectangle((card_x + 24, card_y + 322, card_x + 431, card_y + 476), radius=24, fill=(11, 49, 91, alpha))
+    painter.text((card_x + 48, card_y + 345), "Saldo esperado al cierre", font=load_font(regular, 18), fill=(207, 222, 232, alpha))
+    painter.text((card_x + 48, card_y + 374), "$1.460.000", font=load_font(bold, 35), fill=(87, 223, 176, alpha))
+    painter.text((card_x + 48, card_y + 427), "Disponible actual", font=load_font(regular, 14), fill=(174, 197, 211, alpha))
+    painter.text((card_x + 174, card_y + 427), "$1.280.000", font=load_font(bold, 15), fill=(255, 255, 255, alpha))
+    painter.text((card_x + 290, card_y + 427), "Pendiente", font=load_font(regular, 14), fill=(174, 197, 211, alpha))
+    painter.text((card_x + 365, card_y + 427), "+$180.000", font=load_font(bold, 15), fill=(87, 223, 176, alpha))
+    return canvas
+
+
+def scene_trends(local_t: float, duration: float, icon: Image.Image, regular: Path, medium: Path, bold: Path) -> Image.Image:
+    canvas = background()
+    painter = ImageDraw.Draw(canvas)
+    enter = ease_out(local_t / 0.65)
+    leave = 1 - ease_in_out((local_t - duration + 0.48) / 0.48)
+    visibility = max(0.0, min(1.0, min(enter, leave)))
+    alpha = int(255 * visibility)
+    draw_brand(canvas, icon, regular, bold, alpha)
+    draw_copy(
+        canvas,
+        ["Descubre si avanzas", "período a período"],
+        ["Compara resultados cerrados, categorías,", "ahorro y deuda sin mezclar fechas."],
+        "TENDENCIAS Y REPORTES",
+        regular,
+        medium,
+        bold,
+        visibility,
+        accent_last=True,
+    )
+    card_x = 755 + int((1 - enter) * 90)
+    card_y = 112
+    painter.rounded_rectangle((card_x, card_y, card_x + 455, card_y + 500), radius=30, fill=(255, 255, 255, alpha), outline=(216, 225, 232, alpha), width=2)
+    painter.text((card_x + 28, card_y + 26), "Evolución por período", font=load_font(bold, 27), fill=(11, 49, 91, alpha))
+    painter.text((card_x + 28, card_y + 66), "Resultado cerrado", font=load_font(regular, 17), fill=(96, 117, 138, alpha))
+    values = [82, 126, 103, 154, 132, 178]
+    labels = ["May", "Jun", "Jul", "Ago", "Sep", "Oct"]
+    baseline = card_y + 310
+    for index, value in enumerate(values):
+        grow = ease_out((local_t - 0.25 - index * 0.08) / 0.6) * leave
+        x = card_x + 36 + index * 66
+        color = (32, 189, 174, int(alpha * grow)) if index == len(values) - 1 else (60, 137, 191, int(alpha * grow))
+        painter.rounded_rectangle((x, baseline - int(value * grow), x + 34, baseline), radius=8, fill=color)
+        painter.text((x + 17, baseline + 14), labels[index], font=load_font(medium, 14), anchor="ma", fill=(96, 117, 138, alpha))
+    painter.rounded_rectangle((card_x + 24, card_y + 365, card_x + 431, card_y + 468), radius=20, fill=(231, 248, 244, alpha))
+    painter.text((card_x + 45, card_y + 385), "Octubre cerró 18% mejor", font=load_font(bold, 21), fill=(11, 49, 91, alpha))
+    painter.text((card_x + 45, card_y + 419), "La categoría principal fue Hogar", font=load_font(regular, 17), fill=(66, 110, 126, alpha))
+    return canvas
+
+
 def scene_features(local_t: float, duration: float, icon: Image.Image, regular: Path, medium: Path, bold: Path) -> Image.Image:
     canvas = background()
     painter = ImageDraw.Draw(canvas)
@@ -225,8 +310,52 @@ def scene_outro(local_t: float, duration: float, icon: Image.Image, regular: Pat
     painter.rounded_rectangle((420, 386, 860, 452), radius=33, fill=(32, 189, 174, alpha))
     painter.text((640, 417), "Conoce FinniApp", font=load_font(bold, 25), anchor="mm", fill=(255, 255, 255, alpha))
     painter.text((640, 522), "Funciona sin internet · Respaldo opcional en Google Drive", font=load_font(regular, 21), anchor="ma", fill=(171, 205, 220, alpha))
-    painter.text((640, 576), "Actualmente en prueba cerrada para Android", font=load_font(medium, 20), anchor="ma", fill=(92, 225, 210, alpha))
+    painter.text((640, 576), "Próximamente en prueba abierta para Android", font=load_font(medium, 20), anchor="ma", fill=(92, 225, 210, alpha))
     return canvas
+
+
+def generate_original_music(path: Path, duration: float) -> None:
+    """Create a deterministic, sample-free instrumental bed for FinniApp."""
+    sample_rate = 44_100
+    bpm = 96
+    beat = 60 / bpm
+    bar = beat * 4
+    chord_progression = [
+        (130.81, 164.81, 196.00, 246.94),  # Cmaj7
+        (110.00, 130.81, 164.81, 196.00),  # Am7
+        (87.31, 130.81, 164.81, 196.00),   # Fmaj7
+        (98.00, 146.83, 196.00, 220.00),   # G6
+    ]
+    melody_steps = [2, 1, 3, 1, 2, 0, 1, 3]
+    samples = array("h")
+    frame_total = int(duration * sample_rate)
+    for index in range(frame_total):
+        t = index / sample_rate
+        bar_index = int(t / bar)
+        bar_phase = t % bar
+        chord = chord_progression[bar_index % len(chord_progression)]
+        chord_envelope = min(1.0, bar_phase / 0.18, max(0.0, (bar - bar_phase) / 0.22))
+        pad = sum(math.sin(2 * math.pi * frequency * t) for frequency in chord) / len(chord)
+        bass = math.sin(2 * math.pi * (chord[0] / 2) * t)
+        eighth = beat / 2
+        note_index = int(t / eighth)
+        note_phase = t % eighth
+        melody_frequency = chord[melody_steps[note_index % len(melody_steps)]] * 2
+        melody = math.sin(2 * math.pi * melody_frequency * t) * math.exp(-note_phase * 6.5)
+        beat_phase = t % beat
+        kick_frequency = 56 + 24 * math.exp(-beat_phase * 14)
+        kick = math.sin(2 * math.pi * kick_frequency * t) * math.exp(-beat_phase * 12)
+        fade = min(1.0, t / 1.2, max(0.0, (duration - t) / 1.6))
+        mono = (0.16 * pad * chord_envelope + 0.055 * bass + 0.05 * melody + 0.025 * kick) * fade
+        left = int(max(-1.0, min(1.0, mono * 0.98)) * 32767)
+        right = int(max(-1.0, min(1.0, mono * 0.94 + 0.006 * math.sin(2 * math.pi * 0.22 * t))) * 32767)
+        samples.append(left)
+        samples.append(right)
+    with wave.open(str(path), "wb") as audio:
+        audio.setnchannels(2)
+        audio.setsampwidth(2)
+        audio.setframerate(sample_rate)
+        audio.writeframes(samples.tobytes())
 
 
 def make_video(app_repo: Path, output: Path, poster: Path) -> None:
@@ -243,23 +372,23 @@ def make_video(app_repo: Path, output: Path, poster: Path) -> None:
         for name in [
             "phone-01-overview-1080x1920.png",
             "phone-02-movements-1080x1920.png",
-            "phone-03-savings-1080x1920.png",
-            "phone-04-debts-1080x1920.png",
         ]
     ]
     scenes = [
         (3.2, lambda t, d: scene_intro(t, d, icon, regular, medium, bold)),
-        (4.0, lambda t, d: scene_phone(t, d, screenshots[0], icon, regular, medium, bold, ["Todo tu dinero", "en un solo lugar"], ["Cuentas, tarjetas y movimientos", "con información fácil de entender."], "PANORAMA COMPLETO")),
-        (3.8, lambda t, d: scene_phone(t, d, screenshots[1], icon, regular, medium, bold, ["Registra y entiende", "cada movimiento"], ["Categorías, fechas y medios de pago", "organizados en un historial claro."], "INGRESOS Y GASTOS")),
-        (3.8, lambda t, d: scene_phone(t, d, screenshots[2], icon, regular, medium, bold, ["Convierte tus planes", "en metas visibles"], ["Sigue cuánto llevas ahorrado", "y cuánto te falta para llegar."], "METAS DE AHORRO")),
-        (3.8, lambda t, d: scene_phone(t, d, screenshots[3], icon, regular, medium, bold, ["Mantén deudas", "y pagos al día"], ["Controla cuotas, vencimientos", "y cobros pendientes."], "DEUDAS Y PAGOS")),
-        (4.2, lambda t, d: scene_features(t, d, icon, regular, medium, bold)),
-        (4.2, lambda t, d: scene_outro(t, d, icon, regular, medium, bold)),
+        (3.8, lambda t, d: scene_phone(t, d, screenshots[0], icon, regular, medium, bold, ["Entiende lo que tienes", "y lo que ya moviste"], ["Inicio separa el disponible actual", "del resultado registrado del período."], "TU PRESENTE")),
+        (3.6, lambda t, d: scene_phone(t, d, screenshots[1], icon, regular, medium, bold, ["Cada movimiento", "con su contexto"], ["Filtros, gastos divididos, recurrencias", "y compras de otras personas."], "MOVIMIENTOS CLAROS")),
+        (4.0, lambda t, d: scene_projection(t, d, icon, regular, medium, bold)),
+        (3.8, lambda t, d: scene_trends(t, d, icon, regular, medium, bold)),
+        (4.0, lambda t, d: scene_features(t, d, icon, regular, medium, bold)),
+        (4.6, lambda t, d: scene_outro(t, d, icon, regular, medium, bold)),
     ]
     total_duration = sum(item[0] for item in scenes)
     output.parent.mkdir(parents=True, exist_ok=True)
     poster.parent.mkdir(parents=True, exist_ok=True)
     ffmpeg = imageio_ffmpeg.get_ffmpeg_exe()
+    silent_output = output.with_name(f"{output.stem}.silent{output.suffix}")
+    music_output = output.with_name(f"{output.stem}.music.wav")
     command = [
         ffmpeg,
         "-y",
@@ -275,7 +404,7 @@ def make_video(app_repo: Path, output: Path, poster: Path) -> None:
         "-crf", "22",
         "-pix_fmt", "yuv420p",
         "-movflags", "+faststart",
-        str(output),
+        str(silent_output),
     ]
     process = subprocess.Popen(command, stdin=subprocess.PIPE)
     assert process.stdin is not None
@@ -301,6 +430,26 @@ def make_video(app_repo: Path, output: Path, poster: Path) -> None:
     exit_code = process.wait()
     if exit_code != 0:
         raise SystemExit(exit_code)
+    generate_original_music(music_output, total_duration)
+    mux = subprocess.run(
+        [
+            ffmpeg,
+            "-y",
+            "-i", str(silent_output),
+            "-i", str(music_output),
+            "-c:v", "copy",
+            "-c:a", "aac",
+            "-b:a", "160k",
+            "-shortest",
+            "-movflags", "+faststart",
+            str(output),
+        ],
+        check=False,
+    )
+    silent_output.unlink(missing_ok=True)
+    music_output.unlink(missing_ok=True)
+    if mux.returncode != 0:
+        raise SystemExit(mux.returncode)
     (poster_frame or scene_intro(2, 3.2, icon, regular, medium, bold).convert("RGB")).save(poster, quality=90, optimize=True)
 
 
