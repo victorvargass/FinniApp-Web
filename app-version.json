@@ -1,7 +1,9 @@
 {
   "android": {
-    "latestVersion": "1.4.0",
+    "latestVersion": "1.6.1",
     "minimumVersion": "1.4.0",
+    "latestBuildVersion": "11",
+    "minimumBuildVersion": "10",
     "storeUrl": "https://play.google.com/store/apps/details?id=com.vitoco18.FinniApp"
   }
 }
